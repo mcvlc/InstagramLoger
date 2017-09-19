@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="profile_image_height_256">256dp</dimen>
+    <dimen name="profile_info_height_112">112dp</dimen>
+    <dimen name="size_medium_56">56dp</dimen>
+</resources>
