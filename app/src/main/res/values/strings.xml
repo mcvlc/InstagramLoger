@@ -16,4 +16,6 @@
     <string name="github_sample">github//</string>
     <string name="vk_sample">vk.com</string>
     <string name="about">О себе</string>
+    <string name="followers_per_week">подписчиков за неделю</string>
+    <string name="followers_all">подписчиков за все время</string>
 </resources>
