@@ -42,6 +42,7 @@
                     android:theme="@style/AppTheme.PopupOverlay"
                     android:titleTextColor="#fff"
                     app:layout_collapseMode="pin"/>
+
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -58,7 +59,6 @@
                 app:behavior_min_height="@dimen/size_medium_56"
                 app:layout_behavior=".ui.behaviors.UserInfoBehavior">
 
-                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,8 +72,8 @@
                         android:id="@+id/up_first_textview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:gravity="center|bottom"
                         android:layout_weight="1"
+                        android:gravity="center|bottom"
                         android:text="5"
                         android:textColor="#FFFF"
                         android:textSize="24dp"/>
@@ -95,7 +95,6 @@
                         android:textSize="24dp"/>
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,9 +111,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
                         android:gravity="bottom|center"
                         android:text="@string/followers_per_week"
-                        android:layout_weight="1"
                         android:textColor="#FFFF"/>
 
                     <TextView
@@ -135,27 +134,27 @@
                         />
 
 
-
-
                 </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:layout_marginTop="8dp"/>
 
 
                 <View
                     style="@style/view_string"/>
 
 
+
+
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/float_action_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
 
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|right"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

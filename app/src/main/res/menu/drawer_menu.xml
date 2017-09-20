@@ -4,10 +4,12 @@
         <item android:id="@+id/user_profile_menu"
               android:checkable="true"
 
-              android:title="Профиль"/>
-        <item android:id="@+id/user_contact_menu"
-
-              android:title="Контакты"/>
+              android:title="Вход/ Добавить аккаунт"/>
     </group>
+
+    <group android:menuCategory="secondary">
+
+    </group>
+
 
 </menu>
