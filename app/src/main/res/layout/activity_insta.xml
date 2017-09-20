@@ -147,6 +147,14 @@
                 <View
                     style="@style/view_string"/>
 
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/logout"
+                    android:onClick="genericClickListener"
+                    android:layout_gravity="center"/>
+
 
 
 

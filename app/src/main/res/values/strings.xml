@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DevIntensive</string>
+    <string name="app_name">InstaLogger</string>
     <string name="mobile">Мобильный</string>
     <string name="email">Email</string>
     <string name="vkontakte">Профиль Vkontakte</string>
@@ -18,4 +18,5 @@
     <string name="about">О себе</string>
     <string name="followers_per_week">подписчиков за неделю</string>
     <string name="followers_all">подписчиков за все время</string>
+    <string name="logout">Logout</string>
 </resources>
