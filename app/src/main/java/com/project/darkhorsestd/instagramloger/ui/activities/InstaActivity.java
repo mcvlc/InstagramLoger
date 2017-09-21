@@ -1,6 +1,7 @@
 package com.project.darkhorsestd.instagramloger.ui.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.instagram.instagramapi.activities.InstagramAuthActivity;
@@ -20,13 +22,25 @@ import com.instagram.instagramapi.objects.IGSession;
 import com.instagram.instagramapi.utils.InstagramKitLoginScope;
 import com.instagram.instagramapi.widgets.InstagramLoginButton;
 import com.project.darkhorsestd.instagramloger.R;
+import com.project.darkhorsestd.instagramloger.data.managers.DataManager;
+import com.project.darkhorsestd.instagramloger.data.managers.PreferencesManager;
+import com.project.darkhorsestd.instagramloger.data.network.res.UserInfoRes;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InstaActivity extends AppCompatActivity {
 
+    private static PreferencesManager sPreferencesManager = DataManager.getInstance().getPreferencesManager();
+    private static DataManager sDataManager = DataManager.getInstance();
     private Button mLoginButton;
     private DrawerLayout mNavigationDrawer;
     private NavigationView mNavigationView;
     private CoordinatorLayout mCoordinatorLayout;
+    private TextView mFollowedByView;
+
+
 
     String[] scopes = {InstagramKitLoginScope.BASIC};
 
@@ -40,7 +54,7 @@ public class InstaActivity extends AppCompatActivity {
         View header = mNavigationView.getHeaderView(0);
         mLoginButton = (Button) header.findViewById(R.id.loginButton);
         mLoginButton.setOnClickListener(loginOnClickListener);
-
+        mFollowedByView = (TextView) findViewById(R.id.up_second_textview);
 
     }
 
@@ -64,6 +78,7 @@ public class InstaActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         switch (requestCode) {
             case InstagramEngine.REQUEST_CODE_LOGIN:
 
@@ -75,8 +90,27 @@ public class InstaActivity extends AppCompatActivity {
 
                         IGSession session = (IGSession) bundle.getSerializable(InstagramKitConstants.kSessionKey);
 
-                        Toast.makeText(InstaActivity.this, "Logged" + session.getAccessToken(),
+                        assert session != null;
+                        sPreferencesManager.saveAuthToken(session);
+
+                        Toast.makeText(InstaActivity.this, "Logged" + sPreferencesManager.getAuthToken(),
                                 Toast.LENGTH_LONG).show();
+
+                        sDataManager.userInfo(sPreferencesManager.getAuthToken()).enqueue(new Callback<UserInfoRes>() {
+                            @Override
+                            public void onResponse(Call<UserInfoRes> call, Response<UserInfoRes> response) {
+                                if(response.isSuccessful()){
+
+                                    mFollowedByView.setText(String.valueOf(response.body().getData().getCounts().getFollowedBy()));
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<UserInfoRes> call, Throwable t) {
+
+                            }
+                        });
+
 
                     }
                 }

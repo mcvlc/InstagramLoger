@@ -90,7 +90,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center|bottom"
-                        android:text="5"
                         android:textColor="#FFFF"
                         android:textSize="24dp"/>
 
