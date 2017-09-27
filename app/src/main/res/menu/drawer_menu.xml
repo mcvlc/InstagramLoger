@@ -4,7 +4,7 @@
         <item android:id="@+id/user_profile_menu"
               android:checkable="true"
 
-              android:title="Вход/ Добавить аккаунт"/>
+              android:title=""/>
     </group>
 
     <group android:menuCategory="secondary">

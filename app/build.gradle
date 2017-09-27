@@ -30,11 +30,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     compile 'com.github.sayyam:instagramapi:0.1.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
-    compile 'de.hdodenhof:circleimageview:1.3.0'
 
     compile ('com.squareup.retrofit2:retrofit:2.1.0'){
         exclude module: 'okhttp'

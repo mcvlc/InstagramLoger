@@ -2,6 +2,8 @@ package com.project.darkhorsestd.instagramloger.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +28,10 @@ import com.project.darkhorsestd.instagramloger.R;
 import com.project.darkhorsestd.instagramloger.data.managers.DataManager;
 import com.project.darkhorsestd.instagramloger.data.managers.PreferencesManager;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserInfoRes;
+import com.project.darkhorsestd.instagramloger.utils.RoundedAvatarDrawable;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,12 +39,14 @@ import retrofit2.Response;
 public class InstaActivity extends AppCompatActivity {
 
     private static PreferencesManager sPreferencesManager = DataManager.getInstance().getPreferencesManager();
-    private static DataManager sDataManager = DataManager.getInstance();
+    private DataManager mDataManager = DataManager.getInstance();
     private Button mLoginButton;
     private DrawerLayout mNavigationDrawer;
     private NavigationView mNavigationView;
     private CoordinatorLayout mCoordinatorLayout;
-    private TextView mFollowedByView;
+    private TextView mFollowedByView, mUserName, mFullName;
+    private ImageView mDrawerUserAvatar;
+
 
 
 
@@ -55,6 +63,10 @@ public class InstaActivity extends AppCompatActivity {
         mLoginButton = (Button) header.findViewById(R.id.loginButton);
         mLoginButton.setOnClickListener(loginOnClickListener);
         mFollowedByView = (TextView) findViewById(R.id.up_second_textview);
+        mUserName = (TextView) header.findViewById(R.id.user_name);
+        mFullName = (TextView) header.findViewById(R.id.user_fullname);
+        mDrawerUserAvatar = (ImageView) header.findViewById(R.id.profile_image);
+
 
     }
 
@@ -75,7 +87,7 @@ public class InstaActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
 
@@ -96,12 +108,16 @@ public class InstaActivity extends AppCompatActivity {
                         Toast.makeText(InstaActivity.this, "Logged" + sPreferencesManager.getAuthToken(),
                                 Toast.LENGTH_LONG).show();
 
-                        sDataManager.userInfo(sPreferencesManager.getAuthToken()).enqueue(new Callback<UserInfoRes>() {
+                        mDataManager.userInfo(sPreferencesManager.getAuthToken()).enqueue(new Callback<UserInfoRes>() {
                             @Override
                             public void onResponse(Call<UserInfoRes> call, Response<UserInfoRes> response) {
                                 if(response.isSuccessful()){
-
+                                    loginSuccess(response.body());
                                     mFollowedByView.setText(String.valueOf(response.body().getData().getCounts().getFollowedBy()));
+                                    mFullName.setText(response.body().getData().getFullName());
+                                    mUserName.setText(response.body().getData().getUsername());
+                                    insertDrawerAvatar(Uri.parse(response.body().getData().getProfilePicture()));
+
                                 }
                             }
 
@@ -126,6 +142,15 @@ public class InstaActivity extends AppCompatActivity {
         }
 
     }
+    private void insertDrawerAvatar(Uri selectedImage) {
+        Picasso.with(this)
+                .load(selectedImage)
+                .fit()
+                .centerCrop()
+                .transform(new RoundedAvatarDrawable())
+                .placeholder(R.drawable.avatar_bg)
+                .into(mDrawerUserAvatar);
+    }
 
     public void genericClickListener(View v){
         switch(v.getId()){
@@ -134,7 +159,9 @@ public class InstaActivity extends AppCompatActivity {
         }
     }
 
+    //Обработываем успешную авторизацию пользователя
 
-
-
+    private void loginSuccess(UserInfoRes userInfoRes){
+        sPreferencesManager.saveUserPhoto(Uri.parse(userInfoRes.getData().getProfilePicture()));
+    }
 }
