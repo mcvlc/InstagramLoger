@@ -7,6 +7,7 @@ import com.project.darkhorsestd.instagramloger.InstaLogerApplication;
 import com.project.darkhorsestd.instagramloger.data.network.RestService;
 import com.project.darkhorsestd.instagramloger.data.network.ServiceGenerator;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserInfoRes;
+import com.project.darkhorsestd.instagramloger.data.network.res.UserMediaRes;
 
 import retrofit2.Call;
 
@@ -43,6 +44,10 @@ public class DataManager {
     //region ====== NetWork ======
     public Call<UserInfoRes> userInfo(String accessToken){
        return mRestService.getUserInfo(accessToken);
+    }
+
+    public Call<UserMediaRes> userMediaInfo(String userId, String accessToken, int maxId, int minId, int count){
+        return mRestService.getMediaInfo(userId,accessToken,maxId,minId,count);
     }
     //endregion
 }

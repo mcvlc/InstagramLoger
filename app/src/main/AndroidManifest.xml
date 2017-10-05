@@ -14,6 +14,10 @@
         android:theme="@style/AppTheme">
 
         <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDQh0Dg8j66QuquqXWktcCcECzOkttH27E"/>
+
+        <meta-data
             android:name="com.instagram.instagramapi.InstagramAppClientId"
             android:value="5b9b43e24bb94b70a6de3be1a0f041ff" />
 
@@ -28,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.MapsActivity"/>
     </application
         >
 

@@ -15,4 +15,7 @@ public class ConstantManager {
     public static final String USER_USERNAME_VALUE = "USER_USERNAME_VALUE";
     public static final String USER_FULLNAME_VALUE = "USER_FULLNAME_VALUE";
     public static final String USER_PROFILE_PICTURE_VALUE = "USER_PROFILE_PICTURE_VALUE";
+
+    public static final String USER_LATITUDE_VALUE = "USER_LATITUDE_VALUE";
+    public static final String USER_LONGITUDE_VALUE = "USER_LONGITUDE_VALUE";
 }

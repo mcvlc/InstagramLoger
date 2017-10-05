@@ -81,4 +81,18 @@ public class Data{
 	public String getUsername(){
 		return username;
 	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Data{" + 
+			"website = '" + website + '\'' + 
+			",full_name = '" + fullName + '\'' + 
+			",counts = '" + counts + '\'' + 
+			",bio = '" + bio + '\'' + 
+			",profile_picture = '" + profilePicture + '\'' + 
+			",id = '" + id + '\'' + 
+			",username = '" + username + '\'' + 
+			"}";
+		}
 }

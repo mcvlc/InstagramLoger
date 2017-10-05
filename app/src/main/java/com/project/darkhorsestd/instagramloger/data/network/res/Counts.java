@@ -1,8 +1,6 @@
 package com.project.darkhorsestd.instagramloger.data.network.res;
 
-
 import com.google.gson.annotations.SerializedName;
-
 
 public class Counts{
 
@@ -38,4 +36,14 @@ public class Counts{
 	public int getMedia(){
 		return media;
 	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Counts{" + 
+			"followed_by = '" + followedBy + '\'' + 
+			",follows = '" + follows + '\'' + 
+			",media = '" + media + '\'' + 
+			"}";
+		}
 }

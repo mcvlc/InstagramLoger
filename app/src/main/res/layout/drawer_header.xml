@@ -18,11 +18,23 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login or add"
+        android:text="@string/login"
         android:layout_toRightOf="@+id/profile_image"
         android:gravity="center"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:onClick="genericClickListener"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="75dp"
+        android:layout_toRightOf="@+id/profile_image"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

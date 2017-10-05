@@ -1,22 +1,12 @@
 <resources>
     <string name="app_name">InstaLogger</string>
-    <string name="mobile">Мобильный</string>
-    <string name="email">Email</string>
-    <string name="vkontakte">Профиль Vkontakte</string>
-    <string name="repository">Репозиторий</string>
-    <string name="lorem_ipsam">Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-        ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat
-        nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-        sunt in culpa qui officia deserunt mollit anim id est laborum
-    </string>
-    <string name="github_sample">github//</string>
-    <string name="vk_sample">vk.com</string>
     <string name="about">О себе</string>
-    <string name="followers_per_week">подписчиков за неделю</string>
-    <string name="followers_all">подписчиков за все время</string>
+    <string name="followed">подписок</string>
+    <string name="followers_all">подписчиков</string>
     <string name="logout">Logout</string>
+    <string name="show_photos_on_map">Show photos on map</string>
+    <string name="login">Login</string>
+    <string name="about_me">О себе: </string>
+    <string name="website">Website </string>
+    <string name="tags_and_likes">Tag:Like:Filter</string>
 </resources>

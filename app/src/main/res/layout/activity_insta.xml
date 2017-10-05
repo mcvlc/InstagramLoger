@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimaryDark"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
-                <!-- Надо как-то починить fitsSystemWindows. В макете отрабатывает, а на устройстве нет. -->
                 <ImageView
                     android:id="@+id/user_photo_img"
                     android:layout_width="match_parent"
                     android:layout_height="256dp"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/instagram_logo"
                     />
 
                 <android.support.v7.widget.Toolbar
@@ -111,7 +111,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1"
                         android:gravity="bottom|center"
-                        android:text="@string/followers_per_week"
+                        android:text="@string/followed"
                         android:textColor="#FFFF"/>
 
                     <TextView
@@ -133,28 +133,48 @@
 
 
                 </LinearLayout>
-
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/user_bio"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:layout_marginTop="8dp"/>
-
+                    android:text="@string/about_me"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    />
 
                 <View
                     style="@style/view_string"/>
-
-                <Button
-                    android:id="@+id/logout"
+                <TextView
+                    android:id="@+id/user_website"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/logout"
-                    android:onClick="genericClickListener"
-                    android:layout_gravity="center"/>
-
-
-
+                    android:text="@string/website"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+                <View
+                    style="@style/view_string"/>
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tags_and_likes"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+                <Button
+                    android:id="@+id/photos_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View photo on map"
+                    />
 
             </LinearLayout>
 

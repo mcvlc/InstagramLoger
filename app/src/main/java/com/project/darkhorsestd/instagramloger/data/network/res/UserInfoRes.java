@@ -2,7 +2,6 @@ package com.project.darkhorsestd.instagramloger.data.network.res;
 
 import com.google.gson.annotations.SerializedName;
 
-
 public class UserInfoRes{
 
 	@SerializedName("data")
@@ -15,4 +14,12 @@ public class UserInfoRes{
 	public Data getData(){
 		return data;
 	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"UserInfoRes{" + 
+			"data = '" + data + '\'' + 
+			"}";
+		}
 }
