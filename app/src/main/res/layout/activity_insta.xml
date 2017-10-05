@@ -169,12 +169,25 @@
                     android:textSize="20sp"
                     android:layout_gravity="center"
                     android:textColor="@color/black"/>
+                <View
+                    style="@style/view_string"/>
+                <TextView
+                    android:id="@+id/followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/followers_activity"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    />
                 <Button
                     android:id="@+id/photos_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View photo on map"
+                    android:text="@string/view_photo_on_map"
+                    android:layout_gravity="center"
                     />
+
 
             </LinearLayout>
 

@@ -91,7 +91,6 @@ public class PreferencesManager {
             editor.putString(ConstantManager.USER_LATITUDE_VALUE + i, String.valueOf(photoLatitude.get(i)));
             latitudeCounter++;
         }
-        //   editor.putFloat(ConstantManager.USER_LATITUDE_VALUE, (float)latitude);
         editor.apply();
     }
 
@@ -101,7 +100,6 @@ public class PreferencesManager {
             editor.putString(ConstantManager.USER_LONGITUDE_VALUE + i, String.valueOf(photoLongitude.get(i)));
             longitudeCounter++;
         }
-        //editor.putFloat(ConstantManager.USER_LONGITUDE_VALUE, (float)longitude);
         editor.apply();
     }
 
@@ -123,6 +121,5 @@ public class PreferencesManager {
         }
 
         return longitudeValues;
-        //return mSharedPreferences.getFloat(ConstantManager.USER_LONGITUDE_VALUE, 0.0f);
     }
 }

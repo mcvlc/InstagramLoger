@@ -39,7 +39,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InstaActivity extends AppCompatActivity {
-    // Google api key AIzaSyBoXJfaWV2QjLnt5SFcTWq1zaScG2JIKHY
     private PreferencesManager mPreferencesManager = DataManager.getInstance().getPreferencesManager();
     private DataManager mDataManager = DataManager.getInstance();
     private TextView mUserName, mFullName;
@@ -156,18 +155,6 @@ public class InstaActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                     });
-                                    //TEST
-                                    String lat = "";
-                                    String log = "";
-                                    for (int i = 0; i < mPreferencesManager.getLatitude().size();i++){
-                                        lat+=String.valueOf(mPreferencesManager.getLatitude().get(i))+"\n";
-                                        log+=String.valueOf(mPreferencesManager.getLongitude().get(i))+"\n";
-                                    }
-                                    Toast.makeText(InstaActivity.this, lat,Toast.LENGTH_LONG).show();
-                                    Toast.makeText(InstaActivity.this, log,Toast.LENGTH_LONG).show();
-
-
-
                                 }
                             }
 

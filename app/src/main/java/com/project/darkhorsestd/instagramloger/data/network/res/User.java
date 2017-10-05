@@ -1,9 +1,9 @@
 package com.project.darkhorsestd.instagramloger.data.network.res;
 
-
+import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
-
+@Generated("com.robohorse.robopojogenerator")
 public class User{
 
 	@SerializedName("profile_picture")

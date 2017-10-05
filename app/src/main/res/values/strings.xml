@@ -9,4 +9,6 @@
     <string name="about_me">О себе: </string>
     <string name="website">Website </string>
     <string name="tags_and_likes">Tag:Like:Filter</string>
+    <string name="view_photo_on_map">View photo on map</string>
+    <string name="followers_activity">Your followers activity:</string>
 </resources>
