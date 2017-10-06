@@ -4,7 +4,7 @@ package com.project.darkhorsestd.instagramloger.data.network.res.followers;
 import com.google.gson.annotations.SerializedName;
 
 public class DataItem{
-
+ //
 	@SerializedName("full_name")
 	private String fullName;
 
