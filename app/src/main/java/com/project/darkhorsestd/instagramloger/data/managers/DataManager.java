@@ -6,7 +6,7 @@ import android.content.Context;
 import com.project.darkhorsestd.instagramloger.InstaLogerApplication;
 import com.project.darkhorsestd.instagramloger.data.network.RestService;
 import com.project.darkhorsestd.instagramloger.data.network.ServiceGenerator;
-import com.project.darkhorsestd.instagramloger.data.network.res.UserFollowersRes;
+import com.project.darkhorsestd.instagramloger.data.network.res.followers.UserFollowersRes;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserInfoRes;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserMediaRes;
 

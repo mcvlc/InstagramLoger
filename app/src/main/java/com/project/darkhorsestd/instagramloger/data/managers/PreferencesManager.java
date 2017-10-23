@@ -17,6 +17,7 @@ public class PreferencesManager {
     private static SharedPreferences mSharedPreferences;
     private int latitudeCounter = 0;
     private int longitudeCounter = 0;
+    private int followersCounter = 0;
 
     public PreferencesManager() {
         mSharedPreferences = InstaLogerApplication.getsSharedPreferences();
@@ -106,7 +107,8 @@ public class PreferencesManager {
     public List<Float> getLatitude() {
         List<Float> latitudeValues = new ArrayList<>();
         for (int i = 0; i < latitudeCounter; i++) {
-            latitudeValues.add(Float.parseFloat(mSharedPreferences.getString(ConstantManager.USER_LATITUDE_VALUE + i, String.valueOf(0.0f))));
+            latitudeValues.add(Float.parseFloat(mSharedPreferences
+                    .getString(ConstantManager.USER_LATITUDE_VALUE + i, String.valueOf(0.0f))));
         }
         return latitudeValues;
     }
@@ -116,10 +118,29 @@ public class PreferencesManager {
 
         for (int i = 0; i < longitudeCounter; i++) {
             longitudeValues.add(
-                    Float.parseFloat(mSharedPreferences.
-                    getString(ConstantManager.USER_LONGITUDE_VALUE + i,String.valueOf(0.0f))));
+                    Float.parseFloat(mSharedPreferences
+                            .getString(ConstantManager.USER_LONGITUDE_VALUE + i,String.valueOf(0.0f))));
         }
 
         return longitudeValues;
+    }
+
+    public void saveFollowersList(List<String> followersList){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        for(int i = 0; i < followersList.size();i++){
+            editor.putString(ConstantManager.USER_FOLLOWERS_LIST_VALUE+i, followersList.get(i));
+            followersCounter++;
+        }
+        editor.apply();
+    }
+
+    public  List<String> getFollowersList(){
+        List<String> followersList = new ArrayList<>();
+
+        for(int i = 0; i <followersCounter;i++){
+            followersList.add(mSharedPreferences.getString(ConstantManager.USER_FOLLOWERS_LIST_VALUE+i, "null"));
+        }
+
+        return followersList;
     }
 }

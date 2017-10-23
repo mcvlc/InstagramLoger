@@ -3,6 +3,7 @@ package com.project.darkhorsestd.instagramloger.ui.activities;
 import android.content.Intent;
 import android.net.Uri;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +22,7 @@ import com.instagram.instagramapi.utils.InstagramKitLoginScope;
 import com.project.darkhorsestd.instagramloger.R;
 import com.project.darkhorsestd.instagramloger.data.managers.DataManager;
 import com.project.darkhorsestd.instagramloger.data.managers.PreferencesManager;
-import com.project.darkhorsestd.instagramloger.data.network.res.Data;
 import com.project.darkhorsestd.instagramloger.data.network.res.DataItem;
-import com.project.darkhorsestd.instagramloger.data.network.res.Location;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserInfoRes;
 import com.project.darkhorsestd.instagramloger.data.network.res.UserMediaRes;
 import com.project.darkhorsestd.instagramloger.utils.RoundedAvatarDrawable;
@@ -43,6 +42,7 @@ public class InstaActivity extends AppCompatActivity {
     private DataManager mDataManager = DataManager.getInstance();
     private TextView mUserName, mFullName;
     private ImageView mDrawerUserAvatar;
+    private List<String> followers;
 
     @BindView(R.id.navigation_drawer)
     DrawerLayout mNavigationDrawer;
@@ -59,8 +59,11 @@ public class InstaActivity extends AppCompatActivity {
     @BindView(R.id.tag)
     TextView mTags;
     @BindView(R.id.photos_location)
-    Button mMapButton;
-
+    FloatingActionButton mMapButton;
+    @BindView(R.id.new_followers)
+    TextView mNewFollowersTextView;
+    @BindView(R.id.deleted_followers)
+    TextView mDeletedFollowersTextView;
 
     String[] scopes = {
             InstagramKitLoginScope.BASIC,
@@ -136,6 +139,28 @@ public class InstaActivity extends AppCompatActivity {
                             public void onResponse(Call<UserInfoRes> call, Response<UserInfoRes> response) {
                                 if (response.isSuccessful()) {
                                     loginSuccess(response.body());
+                                    int countFollowers = 0;
+                                    int followedBy = 0;
+
+                                    int followedByNow = response.body().getData().getCounts().getFollowedBy();
+
+
+                                    if (followedByNow > followedBy) {
+                                        if (followedBy == 0) {
+                                            followedBy = followedByNow;
+                                        }
+                                        countFollowers = followedByNow - followedBy;
+                                        mNewFollowersTextView.setText("New followers " + countFollowers);
+                                        mNewFollowersTextView.setTextColor(getColor(R.color.colorPrimary));
+                                        followedBy = followedByNow;
+                                    }
+
+                                    if (followedByNow < followedBy) {
+                                        countFollowers = followedBy - followedByNow;
+                                        mNewFollowersTextView.setText("Unsubscribed users " + countFollowers);
+                                        mNewFollowersTextView.setTextColor(getColor(R.color.colorAccent));
+                                        followedBy = followedByNow;
+                                    }
 
                                     mFollowedByView.setText(String.valueOf(response.body().getData().getCounts().getFollowedBy()));
                                     mFollowed.setText(String.valueOf(response.body().getData().getCounts().getFollows()));
@@ -155,6 +180,8 @@ public class InstaActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                     });
+
+
                                 }
                             }
 
@@ -194,6 +221,56 @@ public class InstaActivity extends AppCompatActivity {
 
                             }
                         });
+
+                     /*  mDataManager.userFollowersList(mPreferencesManager.getAuthToken()).enqueue(new Callback<UserFollowersRes>() {
+                            @Override
+                            public void onResponse(Call<UserFollowersRes> call, Response<UserFollowersRes> response) {
+
+                                if (response.isSuccessful()) {
+                                    for (com.project.darkhorsestd.instagramloger.data.network.res.followers.DataItem dataItem : response.body().getData()) {
+                                        followers.add(dataItem.getFullName());
+                                    }
+
+                                    mPreferencesManager.saveFollowersList(followers);
+
+                                    List<String> newFollowersList = new ArrayList<>();
+                                    List<String> deletedFollowersList = new ArrayList<>();
+
+                                    for (int i = 0; i < mPreferencesManager.getFollowersList().size(); i++) {
+                                        if (!mPreferencesManager.getFollowersList().contains(followers.get(i))) {
+                                            newFollowersList.add(followers.get(i));
+                                        }
+                                    }
+
+                                    for (int i = 0; i < followers.size(); i++) {
+                                        if (!followers.contains(mPreferencesManager.getFollowersList().get(i))) {
+                                            deletedFollowersList.add(mPreferencesManager.getFollowersList().get(i));
+                                        }
+                                    }
+
+                                    if (!newFollowersList.isEmpty()) {
+                                        for (int i = 0; i < newFollowersList.size(); i++) {
+                                            mNewFollowersTextView.setText("+" + newFollowersList.get(i));
+                                            mNewFollowersTextView.setTextColor(getColor(R.color.colorPrimary));
+                                        }
+                                    }
+
+                                    if (!deletedFollowersList.isEmpty()) {
+                                        for (int i = 0; i < deletedFollowersList.size(); i++) {
+                                            mDeletedFollowersTextView.setText("-" + deletedFollowersList.get(i));
+                                            mDeletedFollowersTextView.setTextColor(getColor(R.color.colorAccent));
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<UserFollowersRes> call, Throwable t) {
+
+                            }
+                        });
+                        */
 
 
                     }
@@ -246,4 +323,6 @@ public class InstaActivity extends AppCompatActivity {
 
         mPreferencesManager.saveUserProfileData(userData);
     }
+
+
 }

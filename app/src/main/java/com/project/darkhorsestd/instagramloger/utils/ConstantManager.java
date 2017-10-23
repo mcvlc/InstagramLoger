@@ -18,4 +18,6 @@ public class ConstantManager {
 
     public static final String USER_LATITUDE_VALUE = "USER_LATITUDE_VALUE";
     public static final String USER_LONGITUDE_VALUE = "USER_LONGITUDE_VALUE";
+
+    public static final String USER_FOLLOWERS_LIST_VALUE = "USER_FOLLOWERS_LIST_VALUE";
 }

@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:theme="@style/AppTheme.PopupOverlay"
-                    android:titleTextColor="#fff"
+                    android:titleTextColor="@color/white"
                     app:layout_collapseMode="pin"/>
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -172,20 +172,22 @@
                 <View
                     style="@style/view_string"/>
                 <TextView
-                    android:id="@+id/followers"
+                    android:id="@+id/new_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/followers_activity"
                     android:textSize="20sp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
                     android:textColor="@color/black"
                     />
-                <Button
-                    android:id="@+id/photos_location"
+                <TextView
+                    android:id="@+id/deleted_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/view_photo_on_map"
+                    android:textSize="20sp"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     />
 
 
@@ -193,6 +195,14 @@
 
         </android.support.v4.widget.NestedScrollView>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/photos_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/view_photo_on_map"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|right"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
